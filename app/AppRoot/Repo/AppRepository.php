@@ -33,7 +33,7 @@ class AppRepository
         $item = $this->model;
         $item->fill($data);
         $item->save();
-         return $item;
+        return $item;
     }
     
 

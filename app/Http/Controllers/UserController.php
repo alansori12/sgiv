@@ -8,8 +8,6 @@ use Exception;
 
 class UserController extends Controller
 {
-
-
     protected $repository;
   
     public function __construct(UserRepository $repository)
