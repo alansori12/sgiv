@@ -3,16 +3,15 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
+use App\Models\Dosen;
 use App\AppRoot\Repo\AppRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
-class UserRepository extends AppRepository
+class DosenRepository extends AppRepository
 {
     protected $model;
     
-    public function __construct(User $model)
+    public function __construct(Dosen $model)
     {
         $this->model = $model;
     }
@@ -26,13 +25,13 @@ class UserRepository extends AppRepository
     protected function setDataPayload(Request $request)
     {
         return [
-            'name' => $request->input('name'),
-            'username' => $request->input('username'),
+            'nidn' => $request->input('nidn'),
+            'nm_dsn' => $request->input('nm_dsn'),
+            'jk' => $request->input('jk'),
+            'tgl_lahir' => $request->input('tgl_lahir'),
             'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'hak_akses' => 'Admin',
-            'kd_login' => '1',
-            'remember_token' => Str::random(60),
+            'no_wa' => $request->input('no_wa'),
+            'alamat' => $request->input('alamat'),
         ];
     }
 }

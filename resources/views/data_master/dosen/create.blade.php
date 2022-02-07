@@ -6,19 +6,19 @@
     <!-- Form inputs -->
     <div class="card col-md-9">
         <div class="card-header">
-            <h5 class="card-title">Tambah Data Mahasiswa</h5>
+            <h5 class="card-title">Tambah Data Dosen</h5>
         </div>
 
         <div class="card-body">
 
-            <form action="/mahasiswa/store" method="post">
+            <form action="/dosen/store" method="post">
                 <fieldset class="mb-3">
                     @csrf
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">NIM</label>
+                        <label class="col-form-label col-lg-2">NIDN</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="nim" autofocus autocomplete="off" maxlength="9">
-                            @error('nim')
+                            <input type="text" class="form-control" name="nidn" autofocus autocomplete="off" maxlength="9">
+                            @error('nidn')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
                         </div>
@@ -27,8 +27,8 @@
                     <div class="form-group row">
                         <label class="col-form-label col-lg-2">Nama Lengkap</label>
                         <div class="col-lg-10">
-                            <input type="text" class="form-control" name="nm_mhs" autocomplete="off">
-                            @error('nm_mhs')
+                            <input type="text" class="form-control" name="nm_dsn" autocomplete="off">
+                            @error('nm_dsn')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
                         </div>
@@ -57,42 +57,6 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Tahun Masuk</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="thn_masuk" autocomplete="off" maxlength="4">
-                            @error('thn_masuk')
-                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Semester</label>
-                        <div class="col-lg-10">
-                            <select class="form-control" name="semester">
-                                <option value="I">I</option>
-                                <option value="II">II</option>
-                                <option value="III">III</option>
-                                <option value="IV">IV</option>
-                                <option value="V">V</option>
-                                <option value="VI">VI</option>
-                                <option value="VII">VII</option>
-                                <option value="VIII">VIII</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Tempat Lahir</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="tmp_lahir" autocomplete="off">
-                            @error('tmp_lahir')
-                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
                         <label class="col-form-label col-lg-2">Tanggal Lahir</label>
                         <div class="col-lg-10">
                             <input type="date" class="form-control" name="tgl_lahir" autocomplete="off">
@@ -103,16 +67,22 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Agama</label>
+                        <label class="col-form-label col-lg-2">Email</label>
                         <div class="col-lg-10">
-                            <select class="form-control" name="agama">
-                                <option value="Islam">Islam</option>
-                                <option value="Protestan">Protestan</option>
-                                <option value="Katolik">Katolik</option>
-                                <option value="Hindu">Hindu</option>
-                                <option value="Buddha">Buddha</option>
-                                <option value="Khonghucu">Khonghucu</option>
-                            </select>
+                            <input type="text" class="form-control" name="email" autocomplete="off">
+                            @error('email')
+                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-2">No WhatsApp</label>
+                        <div class="col-lg-10">
+                            <input type="text" class="form-control" name="no_wa" autocomplete="off">
+                            @error('no_wa')
+                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
+                            @enderror
                         </div>
                     </div>
 

@@ -28,6 +28,21 @@ class MahasiswaController extends Controller
     
     public function store(Request $request)
     {
+        $message = [
+            'required' => 'Silahkan isi bidang ini.',
+            'numeric' => 'Silahkan masukan angka.',
+        ];
+
+        $request->validate([
+            'nim' => 'required',
+            'nm_mhs' => 'required',
+            'jk' => 'required',
+            'thn_masuk' => 'required | numeric',
+            'tmp_lahir' => 'required',
+            'tgl_lahir' => 'required',
+            'alamat' => 'required',
+        ],$message);
+
         try {
             $item = $this->repository->store($request);
             return redirect(('mahasiswa'));

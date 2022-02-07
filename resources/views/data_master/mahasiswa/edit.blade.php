@@ -6,7 +6,7 @@
     <!-- Form inputs -->
     <div class="card col-md-9">
         <div class="card-header">
-            <h5 class="card-title">Tambah Data Mahasiswa</h5>
+            <h5 class="card-title">Edit Data Mahasiswa</h5>
         </div>
 
         <div class="card-body">

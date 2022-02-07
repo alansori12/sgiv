@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/mahasiswa" class="nav-link">
+                    <a href="/dosen" class="nav-link">
                         <i class="icon-user-tie"></i>
                         <span>
                             Dosen
