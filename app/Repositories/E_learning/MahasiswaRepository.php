@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\Repositories\E_learning;
 
 use App\Models\Mahasiswa;
 use App\AppRoot\Repo\AppRepository;
@@ -26,14 +26,11 @@ class MahasiswaRepository extends AppRepository
     {
         return [
             'nim' => $request->input('nim'),
-            'nm_mhs' => $request->input('nm_mhs'),
+            'nm_mhs' => ucwords($request->input('nm_mhs')),
             'jk' => $request->input('jk'),
-            'thn_masuk' => $request->input('thn_masuk'),
-            'semester' => $request->input('semester'),
-            'tmp_lahir' => $request->input('tmp_lahir'),
-            'tgl_lahir' => $request->input('tgl_lahir'),
-            'agama' => $request->input('agama'),
-            'alamat' => $request->input('alamat'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('nim')),
+            'kd_login' => '1',
         ];
     }
 }

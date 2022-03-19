@@ -11,13 +11,13 @@
 
         <div class="card-body">
 
-            <form action="/user/store" method="post">
+            <form action="{{ route('admin.user.store') }}" method="POST">
                 <fieldset class="mb-3">
                     @csrf
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Nama Lengkap</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="name" autofocus autocomplete="off">
+                        <label class="col-form-label col-lg-3">Nama Lengkap</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="name" autofocus autocomplete="off" value="{{old('name')}}">
                             @error('name')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
@@ -25,19 +25,9 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Username</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="username" autocomplete="off">
-                            @error('username')
-                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Email</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="email" autocomplete="off">
+                        <label class="col-form-label col-lg-3">Email</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="email" autocomplete="off" value="{{old('email')}}">
                             @error('email')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
@@ -45,10 +35,20 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Password</label>
-                        <div class="col-lg-10">
+                        <label class="col-form-label col-lg-3">Password</label>
+                        <div class="col-lg-9">
                             <input type="password" class="form-control" name="password" autocomplete="off">
                             @error('password')
+                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3">Konfirmasi Password</label>
+                        <div class="col-lg-9">
+                            <input type="password" class="form-control" name="cpassword" autocomplete="off">
+                            @error('cpassword')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
                         </div>

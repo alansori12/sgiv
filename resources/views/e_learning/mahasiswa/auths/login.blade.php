@@ -38,7 +38,7 @@
 				<div class="content d-flex justify-content-center align-items-center">
 
 					<!-- Login form -->
-					<form class="login-form wmin-sm-400" action="postlogin1" method="post">
+					<form class="login-form wmin-sm-400" action="{{ route('mahasiswa.postlogin') }}" method="POST">
 						<div class="card mb-0">
 							<div class="tab-content card-body">
                                 <div class="text-center mb-3">
@@ -47,13 +47,23 @@
                                     <span class="d-block text-muted">Your credentials</span>
                                 </div>
 
+								@if(Session::has('error'))
+								<div class="alert alert-danger alert-styled-left alert-arrow-left alert-dismissible">
+									<button type="button" class="close" data-dismiss="alert"><span>×</span></button>
+									<span class="font-weight-semibold">Login Gagal!</span> {{Session::get('error')}}
+								</div>
+								@endif
+
 								@csrf
 
                                 <div class="form-group form-group-feedback form-group-feedback-left">
-                                    <input type="text" name="username" autocomplete="off" class="form-control" placeholder="Username">
+                                    <input type="text" name="email" autocomplete="off" class="form-control" placeholder="Email" value="{{old('email')}}">
                                     <div class="form-control-feedback">
-                                        <i class="icon-user text-muted"></i>
+                                        <i class="icon-envelop3 text-muted"></i>
                                     </div>
+									@error('email')
+										<label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
+									@enderror
                                 </div>
 
                                 <div class="form-group form-group-feedback form-group-feedback-left">
@@ -61,6 +71,9 @@
                                     <div class="form-control-feedback">
                                         <i class="icon-lock2 text-muted"></i>
                                     </div>
+									@error('password')
+										<label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
+									@enderror
                                 </div>
 
                                 <div class="form-group">

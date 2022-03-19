@@ -11,13 +11,13 @@
 
         <div class="card-body">
 
-            <form action="/dosen/store" method="post">
+            <form action="{{ route('admin.dosen.store') }}" method="POST">
                 <fieldset class="mb-3">
                     @csrf
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">NIDN</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="nidn" autofocus autocomplete="off" maxlength="9">
+                        <label class="col-form-label col-lg-3">NIDN</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="nidn" autofocus autocomplete="off" value="{{old('nidn')}}">
                             @error('nidn')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
@@ -25,9 +25,9 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Nama Lengkap</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="nm_dsn" autocomplete="off">
+                        <label class="col-form-label col-lg-3">Nama Lengkap</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="nm_dsn" autocomplete="off" value="{{old('nm_dsn')}}">
                             @error('nm_dsn')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-lg-2 col-form-label pt-0">Jenis Kelamin</label>
+                        <label class="col-lg-3 col-form-label pt-0">Jenis Kelamin</label>
                         <div class="col-lg-9">
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label">
@@ -57,19 +57,9 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Tanggal Lahir</label>
-                        <div class="col-lg-10">
-                            <input type="date" class="form-control" name="tgl_lahir" autocomplete="off">
-                            @error('tgl_lahir')
-                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
-                            @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Email</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="email" autocomplete="off">
+                        <label class="col-form-label col-lg-3">Email</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="email" autocomplete="off" value="{{old('email')}}">
                             @error('email')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
@@ -77,20 +67,25 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">No WhatsApp</label>
-                        <div class="col-lg-10">
-                            <input type="text" class="form-control" name="no_wa" autocomplete="off">
-                            @error('no_wa')
+                        <label class="col-form-label col-lg-3">Jabatan Fungsional</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="jab_fungs" autocomplete="off" value="{{old('jab_fungs')}}">
+                            @error('jab_fungs')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-lg-2">Alamat</label>
-                        <div class="col-lg-10">
-                            <textarea rows="2" class="form-control" name="alamat"></textarea>
-                            @error('alamat')
+                        <label class="col-form-label col-lg-3">Pendidikan</label>
+                        <div class="col-lg-9">
+                            <select name="pend" class="form-control">
+                                <option value="">-- Pilih Pendidikan --</option>
+                                <option value="S1">S1</option>
+                                <option value="S2">S2</option>
+                                <option value="S3">S3</option>
+                            </select>
+                            @error('pend')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
                         </div>

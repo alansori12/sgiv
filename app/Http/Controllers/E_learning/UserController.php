@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\E_learning;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\UserRepository;
+use App\Repositories\E_learning\UserRepository;
 use Exception;
+use Auth;
 
 class UserController extends Controller
 {
@@ -15,41 +17,32 @@ class UserController extends Controller
         $this->repository = $repository;
     }
   
-   
     public function index(Request $request)
     {
         $items = $this->repository->paginate($request);
-        return view('data_master.users.index',compact('items'));
+        return view('e_learning.admin.users.index',compact('items'));
     }
   
-    public function create()
-    {
-            return view('data_master.users.create');
-    }
-    
     public function store(Request $request)
     {
-        $message = [
-            'required' => 'Silahkan isi bidang ini.',
-            'email' => 'Silahkan masukan alamat email.',
-        ];
-
         $request->validate([
-            'name' => 'required',
-            'username' => 'required',
-            'password' => 'required',
-            'email' => 'required | email',
-        ],$message);
+            'name' => 'required|alpha|max:50',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|max:15',
+            'cpassword' => 'required|same:password',
+        ],[
+            'cpassword.required' => 'The confirm password field is required.',
+            'cpassword.same' => 'The confirm password and password must match.',
+        ]);
 
         try {
             $item = $this->repository->store($request);
-            return redirect('user');
+            return redirect()->route('admin.user')->with('success','Data berhasil disimpan.');
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
     }
   
-    
     public function update($id, Request $request)
     {
         try {
@@ -69,7 +62,6 @@ class UserController extends Controller
             return response()->json(['message' => $e->getMessage()], $e->getStatus());
         }
     }
-    
 
     public function edit($id)
     {
@@ -85,5 +77,26 @@ class UserController extends Controller
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatus());
         }
+    }
+
+    public function postlogin(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:6|max:15',
+        ],[
+            'email.exists' => 'This email is not registered into our system.'
+        ]);
+        if(Auth::guard('web')->attempt($request->only('email','password'))){
+            return redirect()->route('admin.home');
+        }else{
+            return redirect()->route('admin.login')->with('error','Email atau Password salah.');
+        }
+    }
+
+    public function logout()
+    {
+        Auth::guard('web')->logout();
+        return redirect('/');
     }
 }

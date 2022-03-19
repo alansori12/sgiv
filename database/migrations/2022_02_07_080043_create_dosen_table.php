@@ -15,13 +15,14 @@ class CreateDosenTable extends Migration
     {
         Schema::create('dosen', function (Blueprint $table) {
             $table->id();
-            $table->string('nidn',9)->unique();
+            $table->string('nidn',10)->unique();
             $table->string('nm_dsn',50);
             $table->string('jk',9);
-            $table->date('tgl_lahir');
-            $table->string('email',30);
-            $table->string('no_wa',12);
-            $table->text('alamat');
+            $table->string('email')->unique();
+            $table->string('jab_fungs',30)->nullable();
+            $table->string('pend',30);
+            $table->string('password');
+            $table->string('kd_login',1);
             $table->timestamps();
         });
     }

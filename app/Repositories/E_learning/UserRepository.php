@@ -1,12 +1,11 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\Repositories\E_learning;
 
 use App\Models\User;
 use App\AppRoot\Repo\AppRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class UserRepository extends AppRepository
 {
@@ -26,13 +25,11 @@ class UserRepository extends AppRepository
     protected function setDataPayload(Request $request)
     {
         return [
-            'name' => $request->input('name'),
-            'username' => $request->input('username'),
+            'name' => ucwords($request->input('name')),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('password')),
             'hak_akses' => 'Admin',
             'kd_login' => '1',
-            'remember_token' => Str::random(60),
         ];
     }
 }

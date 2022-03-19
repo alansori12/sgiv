@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\Repositories\E_learning;
 
 use App\Models\Dosen;
 use App\AppRoot\Repo\AppRepository;
@@ -26,12 +26,13 @@ class DosenRepository extends AppRepository
     {
         return [
             'nidn' => $request->input('nidn'),
-            'nm_dsn' => $request->input('nm_dsn'),
+            'nm_dsn' => ucwords($request->input('nm_dsn')),
             'jk' => $request->input('jk'),
-            'tgl_lahir' => $request->input('tgl_lahir'),
             'email' => $request->input('email'),
-            'no_wa' => $request->input('no_wa'),
-            'alamat' => $request->input('alamat'),
+            'jab_fungs' => ucwords($request->input('jab_fungs')),
+            'pend' => ucwords($request->input('pend')),
+            'password' => bcrypt($request->input('nidn')),
+            'kd_login' => '1',
         ];
     }
 }

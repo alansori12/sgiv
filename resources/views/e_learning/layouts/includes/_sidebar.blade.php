@@ -46,7 +46,7 @@
                 <!-- Main -->
                 <li class="nav-item-header pt-0"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
                 <li class="nav-item">
-                    <a href="index.html" class="nav-link">
+                    <a href="{{ route('admin.home') }}" class="nav-link active">
                         <i class="icon-home4"></i>
                         <span>
                             Dashboard
@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/user" class="nav-link">
+                    <a href="{{ route('admin.user') }}" class="nav-link">
                         <i class="icon-users2"></i>
                         <span>
                             Users
@@ -62,7 +62,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/mahasiswa" class="nav-link active">
+                    <a href="{{ route('admin.mahasiswa') }}" class="nav-link">
                         <i class="icon-vcard"></i>
                         <span>
                             Mahasiswa
@@ -70,7 +70,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="/dosen" class="nav-link">
+                    <a href="{{ route('admin.dosen') }}" class="nav-link">
                         <i class="icon-user-tie"></i>
                         <span>
                             Dosen
