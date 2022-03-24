@@ -19,14 +19,14 @@ class UserController extends Controller
   
     public function index(Request $request)
     {
-        $items = $this->repository->paginate($request);
+        $items = $this->repository->paginate($request)->where('kd_login', 1);
         return view('e_learning.admin.users.index',compact('items'));
     }
   
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|alpha|max:50',
+            'name' => 'required|max:50',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|max:15',
             'cpassword' => 'required|same:password',
@@ -42,12 +42,24 @@ class UserController extends Controller
             return response()->json(['message' => $e->getMessage()]);
         }
     }
+
+    public function edit($id)
+    {
+        $item = $this->repository->show($id);
+        return view('e_learning.admin.users.edit',compact('item'));
+    }
   
     public function update($id, Request $request)
     {
+        $request->validate([
+            'name' => 'required|max:50',
+            'email' => 'required|email',
+            'hak_akses' => 'required',
+        ]);
+
         try {
             $item = $this->repository->update($id, $request);
-            return redirect(route('userlist'));
+            return redirect()->route('admin.user')->with('success','Data berhasil diupdate.');
         } catch (Exception $e) {
            return response()->json(['message' => $e->getMessage()], $e->getStatus());
         }
@@ -63,17 +75,11 @@ class UserController extends Controller
         }
     }
 
-    public function edit($id)
-    {
-        $item = $this->repository->show($id);
-        return view('update_user',compact('item'));
-    }
-
     public function delete($id)
     {
         try {
             $this->repository->delete($id);
-            return redirect(route('userlist'));
+            return redirect()->route('admin.user')->with('success','Data berhasil dihapus.');
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatus());
         }
@@ -90,7 +96,7 @@ class UserController extends Controller
         if(Auth::guard('web')->attempt($request->only('email','password'))){
             return redirect()->route('admin.home');
         }else{
-            return redirect()->route('admin.login')->with('error','Email atau Password salah.');
+            return redirect()->route('admin.login')->with('error','Login Gagal !');
         }
     }
 

@@ -19,7 +19,7 @@ class DosenController extends Controller
   
     public function index(Request $request)
     {
-        $items = $this->repository->paginate($request);
+        $items = $this->repository->paginate($request)->where('kd_login', 1);
         return view('e_learning.admin.dosen.index',compact('items'));
     }
     
@@ -106,7 +106,7 @@ class DosenController extends Controller
         if(Auth::guard('dosen')->attempt($request->only('email','password'))){
             return redirect()->route('dosen.home');
         }else{
-            return redirect()->route('dosen.login')->with('error','Email atau Password salah.');
+            return redirect()->route('dosen.login')->with('error','Login Gagal !');
         }
     }
 

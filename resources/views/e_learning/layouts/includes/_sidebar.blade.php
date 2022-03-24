@@ -53,6 +53,7 @@
                         </span>
                     </a>
                 </li>
+                @if(Auth::guard('web')->user()->hak_akses == 'Super Admin')
                 <li class="nav-item">
                     <a href="{{ route('admin.user') }}" class="nav-link">
                         <i class="icon-users2"></i>
@@ -61,6 +62,7 @@
                         </span>
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('admin.mahasiswa') }}" class="nav-link">
                         <i class="icon-vcard"></i>
@@ -74,6 +76,14 @@
                         <i class="icon-user-tie"></i>
                         <span>
                             Dosen
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.kelas') }}" class="nav-link">
+                        <i class="icon-book"></i>
+                        <span>
+                            Kelas
                         </span>
                     </a>
                 </li>

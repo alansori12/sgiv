@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\E_learning\UserController;
 use App\Http\Controllers\E_learning\MahasiswaController;
 use App\Http\Controllers\E_learning\DosenController;
+use App\Http\Controllers\E_learning\KelasController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,27 +19,37 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::view('/login','e_learning.admin.auths.login')->name('login');
         Route::post('/postlogin',[UserController::class,'postlogin'])->name('postlogin');
     });
-    Route::middleware(['auth:web'])->group(function(){
-        Route::view('/home','e_learning.admin.home')->name('home');
-        Route::get('/logout',[UserController::class,'logout'])->name('logout');
-        
-        Route::get('/user',[UserController::class,'index'])->name('user');
-        Route::view('/user/create','e_learning.admin.users.create')->name('user.create');
-        Route::post('/user/store',[UserController::class,'store'])->name('user.store');
+    Route::middleware(['auth:web','checkCode:1'])->group(function(){
+        Route::group(['middleware' => 'checkRole:Super Admin'],function(){
+            Route::get('/user',[UserController::class,'index'])->name('user');
+            Route::view('/user/create','e_learning.admin.users.create')->name('user.create');
+            Route::post('/user/store',[UserController::class,'store'])->name('user.store');
+            Route::get('/user/edit/{id}',[UserController::class,'edit'])->name('user.edit');
+            Route::post('/user/update/{id}',[UserController::class,'update'])->name('user.update');
+            Route::get('/user/delete/{id}',[UserController::class,'delete'])->name('user.delete');
+        });
+        Route::group(['middleware' => 'checkRole:Super Admin,Admin'],function(){    
+            Route::view('/home','e_learning.admin.home')->name('home');
+            Route::get('/logout',[UserController::class,'logout'])->name('logout');
 
-        Route::get('/mahasiswa',[MahasiswaController::class,'index'])->name('mahasiswa');
-        Route::view('/mahasiswa/create','e_learning.admin.mahasiswa.create')->name('mahasiswa.create');
-        Route::post('/mahasiswa/store',[MahasiswaController::class,'store'])->name('mahasiswa.store');
-        Route::get('/mahasiswa/edit/{id}',[MahasiswaController::class,'edit'])->name('mahasiswa.edit');
-        Route::post('/mahasiswa/update/{id}',[MahasiswaController::class,'update'])->name('mahasiswa.update');
-        Route::get('/mahasiswa/delete/{id}',[MahasiswaController::class,'delete'])->name('mahasiswa.delete');
+            Route::get('/mahasiswa',[MahasiswaController::class,'index'])->name('mahasiswa');
+            Route::view('/mahasiswa/create','e_learning.admin.mahasiswa.create')->name('mahasiswa.create');
+            Route::post('/mahasiswa/store',[MahasiswaController::class,'store'])->name('mahasiswa.store');
+            Route::get('/mahasiswa/edit/{id}',[MahasiswaController::class,'edit'])->name('mahasiswa.edit');
+            Route::post('/mahasiswa/update/{id}',[MahasiswaController::class,'update'])->name('mahasiswa.update');
+            Route::get('/mahasiswa/delete/{id}',[MahasiswaController::class,'delete'])->name('mahasiswa.delete');
 
-        Route::get('/dosen',[DosenController::class,'index'])->name('dosen');
-        Route::view('/dosen/create','e_learning.admin.dosen.create')->name('dosen.create');
-        Route::post('/dosen/store',[DosenController::class,'store'])->name('dosen.store');
-        Route::get('/dosen/edit/{id}',[DosenController::class,'edit'])->name('dosen.edit');
-        Route::post('/dosen/update/{id}',[DosenController::class,'update'])->name('dosen.update');
-        Route::get('/dosen/delete/{id}',[DosenController::class,'delete'])->name('dosen.delete');
+            Route::get('/dosen',[DosenController::class,'index'])->name('dosen');
+            Route::view('/dosen/create','e_learning.admin.dosen.create')->name('dosen.create');
+            Route::post('/dosen/store',[DosenController::class,'store'])->name('dosen.store');
+            Route::get('/dosen/edit/{id}',[DosenController::class,'edit'])->name('dosen.edit');
+            Route::post('/dosen/update/{id}',[DosenController::class,'update'])->name('dosen.update');
+            Route::get('/dosen/delete/{id}',[DosenController::class,'delete'])->name('dosen.delete');
+
+            Route::get('/kelas',[KelasController::class,'index'])->name('kelas');
+            Route::view('/kelas/create','e_learning.admin.kelas.create')->name('kelas.create');
+            Route::post('/kelas/store',[KelasController::class,'store'])->name('kelas.store');
+        });    
     });
 });
 
@@ -64,6 +75,5 @@ Route::prefix('dosen')->name('dosen.')->group(function(){
     });
 });
 
-Route::group(['middleware' => ['auth','checkRole:Admin','checkCode:1']],function(){
 
-});
+

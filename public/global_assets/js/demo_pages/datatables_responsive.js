@@ -79,7 +79,7 @@ var DatatableResponsive = function() {
 
 
         // Control position
-        $('.datatable-responsive-control-right').DataTable({
+        $('.datatable-responsive-control-right1').DataTable({
             responsive: {
                 details: {
                     type: 'column',
@@ -103,7 +103,79 @@ var DatatableResponsive = function() {
             ]
         });
 
+        $('.datatable-responsive-control-right2').DataTable({
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: -1
+                }
+            },
+            columnDefs: [
+                {
+                    className: 'control',
+                    orderable: false,
+                    targets: -1
+                },
+                { 
+                    width: "100px",
+                    targets: [6]
+                },
+                { 
+                    orderable: false,
+                    targets: [6]
+                }
+            ]
+        });
 
+        $('.datatable-responsive-control-right3').DataTable({
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: -1
+                }
+            },
+            columnDefs: [
+                {
+                    className: 'control',
+                    orderable: false,
+                    targets: -1
+                },
+                { 
+                    width: "100px",
+                    targets: [8]
+                },
+                { 
+                    orderable: false,
+                    targets: [8]
+                }
+            ]
+        });
+
+        $('.datatable-responsive-control-right4').DataTable({
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: -1
+                }
+            },
+            columnDefs: [
+                {
+                    className: 'control',
+                    orderable: false,
+                    targets: -1
+                },
+                { 
+                    width: "100px",
+                    targets: [5]
+                },
+                { 
+                    orderable: false,
+                    targets: [5]
+                }
+            ]
+        });
+
+        
         // Whole row as a control
         $('.datatable-responsive-row-control').DataTable({
             responsive: {

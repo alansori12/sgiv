@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <table class="table table-hover datatable-responsive-control-right">
+        <table class="table table-hover datatable-responsive-control-right2">
             <thead>
                 <tr>
                     <th class="text-center">No</th>
@@ -28,6 +28,7 @@
                     <th>Jenis Kelamin</th>
                     <th>Email</th>
                     <th class="text-center">Aksi</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>

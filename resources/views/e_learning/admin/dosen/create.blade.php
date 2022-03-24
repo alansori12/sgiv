@@ -39,14 +39,14 @@
                         <div class="col-lg-9">
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="jk" value="Laki-laki">
+                                    <input type="radio" class="form-check-input" name="jk" value="Laki-laki" {{old('jk') == 'Laki-laki' ? 'checked' : ''}}>
                                     Laki-laki
                                 </label>
                             </div>
 
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="jk" value="Perempuan">
+                                    <input type="radio" class="form-check-input" name="jk" value="Perempuan" {{old('jk') == 'Perempuan' ? 'checked' : ''}}>
                                     Perempuan
                                 </label>
                             </div>
@@ -81,9 +81,9 @@
                         <div class="col-lg-9">
                             <select name="pend" class="form-control">
                                 <option value="">-- Pilih Pendidikan --</option>
-                                <option value="S1">S1</option>
-                                <option value="S2">S2</option>
-                                <option value="S3">S3</option>
+                                <option value="S1" {{old('pend') == 'S1' ? 'selected' : ''}}>S1</option>
+                                <option value="S2" {{old('pend') == 'S2' ? 'selected' : ''}}>S2</option>
+                                <option value="S3" {{old('pend') == 'S3' ? 'selected' : ''}}>S3</option>
                             </select>
                             @error('pend')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>

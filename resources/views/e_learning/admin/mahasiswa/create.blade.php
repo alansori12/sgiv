@@ -39,14 +39,14 @@
                         <div class="col-lg-9">
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="jk" value="Laki-laki">
+                                    <input type="radio" class="form-check-input" name="jk" value="Laki-laki" {{old('jk') == 'Laki-laki' ? 'checked' : ''}}>
                                     Laki-laki
                                 </label>
                             </div>
 
                             <div class="form-check form-check-inline">
                                 <label class="form-check-label">
-                                    <input type="radio" class="form-check-input" name="jk" value="Perempuan">
+                                    <input type="radio" class="form-check-input" name="jk" value="Perempuan" {{old('jk') == 'Perempuan' ? 'checked' : ''}}>
                                     Perempuan
                                 </label>
                             </div>

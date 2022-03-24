@@ -19,7 +19,7 @@ class MahasiswaController extends Controller
   
     public function index(Request $request)
     {
-        $items = $this->repository->paginate($request);
+        $items = $this->repository->paginate($request)->where('kd_login', 1);
         return view('e_learning.admin.mahasiswa.index',compact('items'));
     }
     
@@ -100,7 +100,7 @@ class MahasiswaController extends Controller
         if(Auth::guard('mahasiswa')->attempt($request->only('email','password'))){
             return redirect()->route('mahasiswa.home');
         }else{
-            return redirect()->route('mahasiswa.login')->with('error','Email atau Password salah.');
+            return redirect()->route('mahasiswa.login')->with('error','Login Gagal !');
         }
     }
 

@@ -13,23 +13,20 @@
     
     <div class="card">
         <div class="card-header header-elements-sm-inline">
-            <h5 class="card-title">Data Dosen</h5>
+            <h5 class="card-title">Data Kelas</h5>
             <div class="header-elements">
-                <a href="{{ route('admin.dosen.create') }}" class="btn btn-primary">Tambah Data</a>
+                <a href="{{ route('admin.kelas.create') }}" class="btn btn-primary">Buat Kelas</a>
             </div>
         </div>
 
-        <table class="table table-hover datatable-responsive-control-right3">
+        <table class="table table-hover datatable-responsive-control-right4">
             <thead>
                 <tr>
                     <th class="text-center">No</th>
-                    <th>NIDN</th>
-                    <th>Nama Lengkap</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Email</th>
-                    <th>Jabatan Fungsional</th>
+                    <th>Kode Kelas</th>
+                    <th>Nama Kelas</th>
+                    <th>Dosen</th>
                     <th class="text-center">Aksi</th>
-                    <th>Pendidikan</th>
                     <th></th>
                 </tr>
             </thead>
@@ -38,11 +35,9 @@
                 @foreach($items as $item)
                 <tr>
                 <td class="text-center">{{$no++}}</td>
-                    <td>{{$item->nidn}}</td>
+                    <td>{{$item->kd_kls}}</td>
+                    <td>{{$item->nm_kls}}</td>
                     <td>{{$item->nm_dsn}}</td>
-                    <td>{{$item->jk}}</td>
-                    <td>{{$item->email}}</td>
-                    <td>{{$item->jab_fungs}}</td>
                     <td class="text-center">
                         <div class="list-icons">
                             <div class="dropdown">
@@ -57,7 +52,6 @@
                             </div>
                         </div>
                     </td>
-                    <td>{{$item->pend}}</td>
                     <td></td>
                 </tr>
                 @endforeach

@@ -3,15 +3,16 @@
 
 namespace App\Repositories\E_learning;
 
-use App\Models\User;
+use App\Models\Kelas;
 use App\AppRoot\Repo\AppRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
-class UserRepository extends AppRepository
+class KelasRepository extends AppRepository
 {
     protected $model;
     
-    public function __construct(User $model)
+    public function __construct(Kelas $model)
     {
         $this->model = $model;
     }
@@ -25,11 +26,9 @@ class UserRepository extends AppRepository
     protected function setDataPayload(Request $request)
     {
         return [
-            'name' => ucwords($request->input('name')),
-            'email' => $request->input('email'),
-            'password' => bcrypt($request->input('password')),
-            'hak_akses' => $request->input('hak_akses'),
-            'kd_login' => '1',
+            'kd_kls' => Str::random(7)->unique(),
+            'nm_kls' => ucwords($request->input('nm_kls')),
+            'nm_dsn' => $request->input('nm_dsn'),
         ];
     }
 }

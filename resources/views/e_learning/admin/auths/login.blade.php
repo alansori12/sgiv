@@ -50,7 +50,7 @@
 								@if(Session::has('error'))
 								<div class="alert alert-danger alert-styled-left alert-arrow-left alert-dismissible">
 									<button type="button" class="close" data-dismiss="alert"><span>×</span></button>
-									<span class="font-weight-semibold">Login Gagal!</span> {{Session::get('error')}}
+									<span class="font-weight-semibold">{{Session::get('error')}}</span> 
 								</div>
 								@endif
 

@@ -19,21 +19,22 @@
             </div>
         </div>
 
-        <table class="table table-hover datatable-responsive-control-right">
+        <table class="table table-hover datatable-responsive-control-right1">
             <thead>
                 <tr>
-                    <th>No</th>
-                    <th>Nama Lengkap</th>
+                    <th class="text-center">No</th>
+                    <th>Nama User</th>
                     <th>Email</th>
                     <th>Hak Akses</th>
                     <th class="text-center">Aksi</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <?php $no=1; ?>
                 @foreach($items as $item)
                 <tr>
-                    <td>{{$no++}}</td>
+                    <td class="text-center">{{$no++}}</td>
                     <td>{{$item->name}}</td>
                     <td>{{$item->email}}</td>
                     <td>{{$item->hak_akses}}</td>
@@ -45,9 +46,8 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="/mahasiswa/edit/{{$item->id}}" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
-                                    <a href="/mahasiswa/delete/{{$item->id}}" class="dropdown-item"><i class="icon-bin"></i> Hapus</a>
-                                    <a href="#" class="dropdown-item"><i class="icon-eye"></i> Detail</a>
+                                    <a href="/admin/user/edit/{{$item->id}}" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
+                                    <a href="/admin/user/delete/{{$item->id}}" class="dropdown-item" onclick="return confirm('Data akan dihapus?')"><i class="icon-bin"></i> Hapus</a>
                                 </div>
                             </div>
                         </div>
