@@ -1,12 +1,4 @@
 <div class="navbar navbar-expand-lg navbar-dark bg-indigo navbar-static shadow-none">
-    <div class="d-flex flex-1 d-lg-none">
-        <button type="button" class="navbar-toggler sidebar-mobile-main-toggle">
-            <i class="icon-transmission"></i>
-        </button>
-        <button data-target="#navbar_search" type="button" class="navbar-toggler" data-toggle="collapse">
-            <i class="icon-search4"></i>
-        </button>
-    </div>
 
     <div class="navbar-brand text-center text-lg-left">
         <a href="index.html" class="d-inline-block">
@@ -17,25 +9,13 @@
 
     <div class="collapse navbar-collapse order-2 order-lg-1" id="navbar_search">
         <div class="navbar-search d-flex align-items-center py-3 py-lg-0">
-            <div class="form-group-feedback form-group-feedback-left flex-grow-1">
-                <input type="text" class="form-control" placeholder="Search">
-                <div class="form-control-feedback">
-                    <i class="icon-search4 text-white opacity-50"></i>
-                </div>
-            </div>
+            
         </div>
     </div>
 
     <div class="order-1 order-lg-2 d-flex flex-1 flex-lg-0 justify-content-end align-items-center">
-        <span class="badge badge-light d-none d-lg-inline-block mr-3">Active</span>
 
         <ul class="navbar-nav flex-row align-items-center h-100">
-            <li class="nav-item nav-item-dropdown-lg dropdown">
-                <a href="#" class="navbar-nav-link navbar-nav-link-toggler" data-toggle="modal" data-target="#notifications">
-                    <i class="icon-bell2"></i>
-                    <span class="badge badge-yellow badge-pill">3</span>
-                </a>
-            </li>
 
             <li class="nav-item nav-item-dropdown-lg dropdown dropdown-user h-100">
                 <a href="#" class="navbar-nav-link navbar-nav-link-toggler dropdown-toggle d-inline-flex align-items-center h-100" data-toggle="dropdown">

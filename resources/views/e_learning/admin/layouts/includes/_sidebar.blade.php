@@ -29,9 +29,9 @@
                 </a>
 
                 <div class="sidebar-resize-hide flex-1 ml-3">
-                    <div class="font-weight-semibold">Victoria Baker</div>
+                    <div class="font-weight-semibold">{{ Auth::guard('web')->user()->name }}</div>
                     <div class="font-size-sm line-height-sm text-muted">
-                        Senior developer
+                    {{ Auth::guard('web')->user()->hak_akses }}
                     </div>
                 </div>
             </div>
@@ -80,8 +80,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.kelas') }}" class="nav-link">
+                    <a href="{{ route('admin.matkul') }}" class="nav-link">
                         <i class="icon-book"></i>
+                        <span>
+                            Mata Kuliah
+                        </span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.kelas') }}" class="nav-link">
+                        <i class="icon-reading"></i>
                         <span>
                             Kelas
                         </span>

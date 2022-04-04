@@ -1,4 +1,4 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
@@ -7,7 +7,7 @@
     @if(Session::has('success'))
     <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
         <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
-        <span class="font-weight-semibold">Success!</span> {{Session::get('success')}}
+        <span class="font-weight-semibold">Berhasil!</span> {{Session::get('success')}}
     </div>
     @endif
     
@@ -19,13 +19,14 @@
             </div>
         </div>
 
-        <table class="table table-hover datatable-responsive-control-right4">
+        <table class="table table-hover datatable-responsive-control-right5">
             <thead>
                 <tr>
                     <th class="text-center">No</th>
-                    <th>Kode Kelas</th>
                     <th>Nama Kelas</th>
-                    <th>Dosen</th>
+                    <th>Semester</th>
+                    <th>Dosen Pengajar</th>
+                    <th>Tahun Akademik</th>
                     <th class="text-center">Aksi</th>
                     <th></th>
                 </tr>
@@ -34,10 +35,11 @@
                 <?php $no=1; ?>
                 @foreach($items as $item)
                 <tr>
-                <td class="text-center">{{$no++}}</td>
-                    <td>{{$item->kd_kls}}</td>
-                    <td>{{$item->nm_kls}}</td>
-                    <td>{{$item->nm_dsn}}</td>
+                    <td class="text-center">{{$no++}}</td>
+                    <td><a href="/admin/kelas/member/{{$item->id}}" style="color: #333" data-popup="tooltip" title="" data-placement="top" data-original-title="Klik untuk detail kelas">{{$item->matkul->matkul}}</a></td>
+                    <td class="text-center">{{$item->matkul->semester}}</td>
+                    <td>{{$item->dosen->nm_dsn}}</td>
+                    <td>{{$item->thn_akademik}}</td>
                     <td class="text-center">
                         <div class="list-icons">
                             <div class="dropdown">
@@ -46,8 +48,9 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="/admin/dosen/edit/{{$item->id}}" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
-                                    <a href="/admin/dosen/delete/{{$item->id}}" class="dropdown-item" onclick="return confirm('Data akan dihapus?')"><i class="icon-bin"></i> Hapus</a>
+                                    <a href="/admin/kelas/edit/{{$item->id}}" class="dropdown-item"><i class="icon-pencil7"></i> Edit</a>
+                                    <a href="/admin/kelas/delete/{{$item->id}}" class="dropdown-item" onclick="return confirm('Kelas akan dihapus?')"><i class="icon-bin"></i> Hapus</a>
+                                    <a href="/admin/kelas/member/{{$item->id}}" class="dropdown-item"><i class="icon-user-plus"></i> Anggota</a>
                                 </div>
                             </div>
                         </div>

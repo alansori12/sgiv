@@ -1,4 +1,4 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
@@ -57,7 +57,10 @@
                     <div class="form-group row">
                         <label class="col-form-label col-lg-3">Hak Akses</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" name="hak_akses" value="Admin" readonly style="background-color: #fff">
+                            <select name="hak_akses" class="form-control">
+                                <option value="Admin" {{old('hak_akses') == 'Admin' ? 'selected' : ''}}>Admin</option>
+                                <option value="Super Admin" {{old('hak_akses') == 'Super Admin' ? 'selected' : ''}}>Super Admin</option>
+                            </select>
                         </div>
                     </div>
                 </fieldset>

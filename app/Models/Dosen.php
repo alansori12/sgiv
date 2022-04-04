@@ -27,7 +27,6 @@ class Dosen extends Authenticatable
         'jab_fungs',
         'pend',
         'password',
-        'kd_login',
     ];
 
     /**

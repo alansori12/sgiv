@@ -166,6 +166,54 @@ var DatatableResponsive = function() {
                 },
                 { 
                     width: "100px",
+                    targets: [6]
+                },
+                { 
+                    orderable: false,
+                    targets: [6]
+                }
+            ]
+        });
+
+        $('.datatable-responsive-control-right5').DataTable({
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: -1
+                }
+            },
+            columnDefs: [
+                {
+                    className: 'control',
+                    orderable: false,
+                    targets: -1
+                },
+                { 
+                    width: "100px",
+                    targets: [5]
+                },
+                { 
+                    orderable: false,
+                    targets: [5]
+                }
+            ]
+        });
+
+        $('.datatable-responsive-control-right6').DataTable({
+            responsive: {
+                details: {
+                    type: 'column',
+                    target: -1
+                }
+            },
+            columnDefs: [
+                {
+                    className: 'control',
+                    orderable: false,
+                    targets: -1
+                },
+                { 
+                    width: "100px",
                     targets: [5]
                 },
                 { 

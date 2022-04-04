@@ -1,4 +1,4 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
@@ -7,7 +7,7 @@
     @if(Session::has('success'))
     <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
         <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
-        <span class="font-weight-semibold">Success!</span> {{Session::get('success')}}
+        <span class="font-weight-semibold">Berhasil!</span> {{Session::get('success')}}
     </div>
     @endif
     

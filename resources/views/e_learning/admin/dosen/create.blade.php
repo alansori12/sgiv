@@ -1,4 +1,4 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
@@ -79,8 +79,8 @@
                     <div class="form-group row">
                         <label class="col-form-label col-lg-3">Pendidikan</label>
                         <div class="col-lg-9">
-                            <select name="pend" class="form-control">
-                                <option value="">-- Pilih Pendidikan --</option>
+                            <select data-placeholder="Pilih Pendidikan..." name="pend" class="form-control select">
+                                <option></option>
                                 <option value="S1" {{old('pend') == 'S1' ? 'selected' : ''}}>S1</option>
                                 <option value="S2" {{old('pend') == 'S2' ? 'selected' : ''}}>S2</option>
                                 <option value="S3" {{old('pend') == 'S3' ? 'selected' : ''}}>S3</option>

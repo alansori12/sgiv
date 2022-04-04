@@ -22,7 +22,6 @@ class User extends Authenticatable
         'email',
         'password',
         'hak_akses',
-        'kd_login',
     ];
 
     /**

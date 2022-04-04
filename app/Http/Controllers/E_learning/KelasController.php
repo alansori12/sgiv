@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\E_learning\KelasRepository;
 use Exception;
+use App\Models\Matkul;
+use App\Models\Dosen;
+use App\Models\Mahasiswa;
+use App\Models\Anggota;
 
 class KelasController extends Controller
 {
@@ -21,24 +25,105 @@ class KelasController extends Controller
         $items = $this->repository->paginate($request);
         return view('e_learning.admin.kelas.index',compact('items'));
     }
+
+    public function create()
+    {
+        $matkul = Matkul::all();
+        $dosen = Dosen::all();
+        return view('e_learning.admin.kelas.create',compact('matkul','dosen'));
+    }
     
     public function store(Request $request)
     {
         $request->validate([
-            'nim' => 'required|numeric|digits:9|unique:mahasiswa,nim',
-            'nm_mhs' => 'required|max:50',
-            'jk' => 'required',
-            'email' => 'required|email|unique:mahasiswa,email',
+            'matkul_id' => 'required',
+            'dosen_id' => 'required',
+            'waktu' => 'required|min:11',
+            'thn_akademik' => 'required|min:9',
         ],[
-            'nm_mhs.required' => 'The name field is required.',
-            'jk.required' => 'The gender field is required.',
+            'matkul_id.required' => 'Silahkan pilih mata kuliah.',
+            'dosen_id.required' => 'Silahkan pilih dosen pengajar.',
+            'waktu.required' => 'Kolom waktu wajib diisi.',
+            'waktu.min' => 'Waktu harus :min karakter.',
+            'thn_akademik.required' => 'Kolom tahun akademik wajib diisi.',
+            'thn_akademik.min' => 'Tahun akademik harus :min karakter.',
         ]);
 
         try {
             $item = $this->repository->store($request);
-            return redirect()->route('admin.mahasiswa')->with('success','Data berhasil disimpan.');
+            return redirect()->route('admin.kelas')->with('success','Kelas telah dibuat.');
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
+    }
+
+    public function edit($id)
+    {
+        $item = $this->repository->show($id);
+        $matkul = Matkul::all();
+        $dosen = Dosen::all();
+        return view('e_learning.admin.kelas.edit',compact('item','matkul','dosen'));
+    }
+
+    public function update($id, Request $request)
+    {
+        $request->validate([
+            'waktu' => 'required|min:11',
+            'thn_akademik' => 'required|min:9',
+        ],[
+            'waktu.required' => 'Kolom waktu wajib diisi.',
+            'waktu.min' => 'Waktu harus :min karakter.',
+            'thn_akademik.required' => 'Kolom tahun akademik wajib diisi.',
+            'thn_akademik.min' => 'Tahun akademik harus :min karakter.',
+        ]);
+
+        try {
+            $item = $this->repository->update($id, $request);
+            return redirect()->route('admin.kelas')->with('success','Kelas telah diupdate.');
+        } catch (Exception $e) {
+           return response()->json(['message' => $e->getMessage()], $e->getStatus());
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $this->repository->delete($id);
+            return redirect()->route('admin.kelas')->with('success','Kelas telah dihapus.');
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatus());
+        }
+    }
+
+    public function member($id)
+    {
+        $item = $this->repository->show($id);
+        $mhs = Mahasiswa::all();
+        $member = Anggota::all()->where('kelas_id', $id); 
+        return view('e_learning.admin.kelas.member',compact('item','mhs','member'));
+    }
+
+    public function add(Request $request, $id)
+    {
+        $request->validate([
+            'mahasiswa_id' => 'required',
+        ],[
+            'mahasiswa_id.required' => 'Silahkan pilih mahasiswa.',
+        ]);
+
+        try {
+            $request->request->add(['kelas_id' => $id]);
+            Anggota::create($request->all());
+            return redirect()->back()->with('success','Anggota telah ditambahkan.');
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }
+    }
+
+    public function remove($id)
+    {
+        $member = Anggota::find($id);
+        $member->delete();
+        return redirect()->back()->with('remove','Anggota telah dihapus.');
     }
 }

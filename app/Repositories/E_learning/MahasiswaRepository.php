@@ -30,7 +30,6 @@ class MahasiswaRepository extends AppRepository
             'jk' => $request->input('jk'),
             'email' => $request->input('email'),
             'password' => bcrypt($request->input('nim')),
-            'kd_login' => '1',
         ];
     }
 }

@@ -1,12 +1,12 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
 
     <!-- Control position -->
-    <div class="alert bg-teal text-white alert-styled-left alert-arrow-left alert-styled-custom alert-dismissible">
+    <div class="alert bg-teal text-white alert-styled-left alert-arrow-left alert-info alert-dismissible">
         <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
-        <span class="font-weight-semibold">Welcome!</span> This is a super-duper nice looking <a href="#" class="alert-link">alert</a> with custom color.
+        <span class="font-weight-semibold">Selamat Datang di <i>E-Learning</i> STMIK Dharma Negara Bandung.</span>
     </div>
     <!-- /control position -->
 

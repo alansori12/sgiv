@@ -19,7 +19,7 @@ class UserController extends Controller
   
     public function index(Request $request)
     {
-        $items = $this->repository->paginate($request)->where('kd_login', 1);
+        $items = $this->repository->paginate($request);
         return view('e_learning.admin.users.index',compact('items'));
     }
   
@@ -31,13 +31,21 @@ class UserController extends Controller
             'password' => 'required|min:6|max:15',
             'cpassword' => 'required|same:password',
         ],[
-            'cpassword.required' => 'The confirm password field is required.',
-            'cpassword.same' => 'The confirm password and password must match.',
+            'name.required' => 'Kolom nama wajib diisi.',
+            'name.max' => 'Nama tidak boleh lebih dari :max karakter.',
+            'email.required' => 'Kolom email wajib diisi.',
+            'email.email' => 'Email harus alamat email yang valid.',
+            'email.unique' => 'Email sudah digunakan.',
+            'password.required' => 'Kolom password wajib diisi.',
+            'password.min' => 'Password harus minimal :min karakter.',
+            'password.max' => 'Password tidak boleh lebih dari :max karakter.',
+            'cpassword.required' => 'Kolom konfirmasi password wajib diisi.',
+            'cpassword.same' => 'Konfirmasi password dan password harus sama.',
         ]);
 
         try {
             $item = $this->repository->store($request);
-            return redirect()->route('admin.user')->with('success','Data berhasil disimpan.');
+            return redirect()->route('admin.user')->with('success','Data telah disimpan.');
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
@@ -54,12 +62,16 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'email' => 'required|email',
-            'hak_akses' => 'required',
+        ],[
+            'name.required' => 'Kolom nama wajib diisi.',
+            'name.max' => 'Nama tidak boleh lebih dari :max karakter.',
+            'email.required' => 'Kolom email wajib diisi.',
+            'email.email' => 'Email harus alamat email yang valid.',
         ]);
 
         try {
             $item = $this->repository->update($id, $request);
-            return redirect()->route('admin.user')->with('success','Data berhasil diupdate.');
+            return redirect()->route('admin.user')->with('success','Data telah diupdate.');
         } catch (Exception $e) {
            return response()->json(['message' => $e->getMessage()], $e->getStatus());
         }
@@ -79,7 +91,7 @@ class UserController extends Controller
     {
         try {
             $this->repository->delete($id);
-            return redirect()->route('admin.user')->with('success','Data berhasil dihapus.');
+            return redirect()->route('admin.user')->with('success','Data telah dihapus.');
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatus());
         }
@@ -89,9 +101,13 @@ class UserController extends Controller
     {
         $request->validate([
             'email' => 'required|email|exists:users,email',
-            'password' => 'required|min:6|max:15',
+            'password' => 'required|min:6',
         ],[
-            'email.exists' => 'This email is not registered into our system.'
+            'email.required' => 'Silahkan masukan email.',
+            'email.email' => 'Email harus alamat email yang valid.',
+            'email.exists' => 'Email tidak terdaftar pada sistem.',
+            'password.required' => 'Silahkan masukan password.',
+            'password.min' => 'Masukan password minimal :min karakter.',
         ]);
         if(Auth::guard('web')->attempt($request->only('email','password'))){
             return redirect()->route('admin.home');

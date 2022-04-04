@@ -1,4 +1,4 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
@@ -50,9 +50,6 @@
                                     Perempuan
                                 </label>
                             </div>
-                            @error('jk')
-                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
-                            @enderror
                         </div>
                     </div>
 

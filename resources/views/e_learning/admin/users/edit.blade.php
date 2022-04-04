@@ -1,4 +1,4 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
@@ -41,9 +41,6 @@
                                 <option value="Admin" @if($item->hak_akses == 'Admin') selected @endif>Admin</option>
                                 <option value="Super Admin" @if($item->hak_akses == 'Super Admin') selected @endif>Super Admin</option>
                             </select>
-                            @error('hak_akses')
-                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
-                            @enderror
                         </div>
                     </div>
                 </fieldset>

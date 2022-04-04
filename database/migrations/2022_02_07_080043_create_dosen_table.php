@@ -19,10 +19,9 @@ class CreateDosenTable extends Migration
             $table->string('nm_dsn',50);
             $table->string('jk',9);
             $table->string('email')->unique();
-            $table->string('jab_fungs',30)->nullable();
-            $table->string('pend',30);
+            $table->string('jab_fungs',50)->nullable();
+            $table->string('pend',2);
             $table->string('password');
-            $table->string('kd_login',1);
             $table->timestamps();
         });
     }

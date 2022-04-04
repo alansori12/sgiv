@@ -1,4 +1,4 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
@@ -17,18 +17,51 @@
                     <div class="form-group row">
                         <label class="col-form-label col-lg-3">Nama Kelas</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" name="nm_kls" autofocus autocomplete="off" value="{{old('nm_kls')}}">
-                            @error('nm_kls')
+                            <select data-placeholder="Pilih Mata Kuliah..." class="form-control select-search" name="matkul_id" data-fouc>
+                                <option></option>
+                                @foreach($matkul as $matkul)
+                                    <option value="{{$matkul->id}}">{{$matkul->matkul}}</option>
+                                @endforeach
+                            </select>
+                            @error('matkul_id')
+                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3">Dosen Pengajar</label>
+                        <div class="col-lg-9">
+                            <select data-placeholder="Pilih Dosen..." class="form-control select-search" name="dosen_id" data-fouc>
+                                <option></option>
+                                @foreach($dosen as $dosen)
+                                    <option value="{{$dosen->id}}">{{$dosen->nm_dsn}}</option>
+                                @endforeach
+                            </select>
+                            @error('dosen_id')
                                 <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
                             @enderror
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label>Select with search</label>
-                        <select class="form-control select-search" data-fouc>
-                            <option value=""></option>
-                        </select>
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3">Waktu</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="waktu" data-mask="19.59-19.59" autocomplete="off" value="{{old('waktu')}}">
+                            @error('waktu')
+                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
+                            @enderror
+                        </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label class="col-form-label col-lg-3">Tahun Akademik</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="thn_akademik" data-mask="2099/2099" autocomplete="off" value="{{old('thn_akademik')}}">
+                            @error('thn_akademik')
+                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
+                            @enderror
+                        </div>
                     </div>
                 </fieldset>
 

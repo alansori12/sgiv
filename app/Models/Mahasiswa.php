@@ -25,7 +25,6 @@ class Mahasiswa extends Authenticatable
         'jk',
         'email',
         'password',
-        'kd_login',
     ];
 
     /**

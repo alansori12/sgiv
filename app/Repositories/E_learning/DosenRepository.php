@@ -30,9 +30,8 @@ class DosenRepository extends AppRepository
             'jk' => $request->input('jk'),
             'email' => $request->input('email'),
             'jab_fungs' => ucwords($request->input('jab_fungs')),
-            'pend' => ucwords($request->input('pend')),
+            'pend' => $request->input('pend'),
             'password' => bcrypt($request->input('nidn')),
-            'kd_login' => '1',
         ];
     }
 }

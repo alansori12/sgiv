@@ -43,8 +43,12 @@
 
   Inputmask.DEFAULTS = {
     mask: "",
-    placeholder: "_",
+    placeholder: " ",
     definitions: {
+      '0': "0",
+      '1': "[0-1]",
+      '2': "2",
+      '5': "[0-5]",
       '9': "[0-9]",
       'a': "[A-Za-z]",
       'w': "[A-Za-z0-9]",

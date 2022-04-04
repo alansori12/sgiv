@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDetailAnggotaTable extends Migration
+class CreateAnggotaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateDetailAnggotaTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_anggota', function (Blueprint $table) {
+        Schema::create('anggota', function (Blueprint $table) {
             $table->id();
-            $table->string('kd_kls',7);
-            $table->string('nm_mhs',50);
+            $table->integer('kelas_id');
+            $table->integer('mahasiswa_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateDetailAnggotaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_anggota');
+        Schema::dropIfExists('anggota');
     }
 }

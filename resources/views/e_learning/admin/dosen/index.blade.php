@@ -1,4 +1,4 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
@@ -7,7 +7,7 @@
     @if(Session::has('success'))
     <div class="alert alert-success alert-styled-left alert-arrow-left alert-dismissible">
         <button type="button" class="close" data-dismiss="alert"><span>×</span></button>
-        <span class="font-weight-semibold">Success!</span> {{Session::get('success')}}
+        <span class="font-weight-semibold">Berhasil!</span> {{Session::get('success')}}
     </div>
     @endif
     
@@ -27,9 +27,9 @@
                     <th>Nama Lengkap</th>
                     <th>Jenis Kelamin</th>
                     <th>Email</th>
-                    <th>Jabatan Fungsional</th>
-                    <th class="text-center">Aksi</th>
                     <th>Pendidikan</th>
+                    <th class="text-center">Aksi</th>
+                    <th>Jabatan Fungsional</th>
                     <th></th>
                 </tr>
             </thead>
@@ -42,7 +42,7 @@
                     <td>{{$item->nm_dsn}}</td>
                     <td>{{$item->jk}}</td>
                     <td>{{$item->email}}</td>
-                    <td>{{$item->jab_fungs}}</td>
+                    <td>{{$item->pend}}</td>
                     <td class="text-center">
                         <div class="list-icons">
                             <div class="dropdown">
@@ -57,7 +57,7 @@
                             </div>
                         </div>
                     </td>
-                    <td>{{$item->pend}}</td>
+                    <td>{{$item->jab_fungs}}</td>
                     <td></td>
                 </tr>
                 @endforeach

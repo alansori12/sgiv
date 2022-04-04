@@ -1,4 +1,4 @@
-@extends('e_learning.layouts.master')
+@extends('e_learning.admin.layouts.master')
 
 @section('content')
 <div class="content">
@@ -81,9 +81,6 @@
                                 <option value="S2" @if($item->pend == 'S2') selected @endif>S2</option>
                                 <option value="S3" @if($item->pend == 'S3') selected @endif>S3</option>
                             </select>
-                            @error('pend')
-                                <label id="with_icon-error" class="validation-invalid-label" for="with_icon">{{$message}}</label>
-                            @enderror
                         </div>
                     </div>
                 </fieldset>

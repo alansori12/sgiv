@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('hak_akses',20);
-            $table->string('kd_login',1);
             $table->rememberToken();
             $table->timestamps();
         });

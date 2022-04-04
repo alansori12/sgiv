@@ -6,7 +6,6 @@ namespace App\Repositories\E_learning;
 use App\Models\Kelas;
 use App\AppRoot\Repo\AppRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class KelasRepository extends AppRepository
 {
@@ -26,9 +25,10 @@ class KelasRepository extends AppRepository
     protected function setDataPayload(Request $request)
     {
         return [
-            'kd_kls' => Str::random(7)->unique(),
-            'nm_kls' => ucwords($request->input('nm_kls')),
-            'nm_dsn' => $request->input('nm_dsn'),
+            'matkul_id' => $request->input('matkul_id'),
+            'dosen_id' => $request->input('dosen_id'),
+            'waktu' => $request->input('waktu'),
+            'thn_akademik' => $request->input('thn_akademik'),
         ];
     }
 }
