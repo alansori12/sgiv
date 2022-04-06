@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Repositories\E_learning;
+namespace App\Repositories\E_Jurnal;
 
 use App\Models\User;
 use App\AppRoot\Repo\AppRepository;
