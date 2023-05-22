@@ -4,15 +4,21 @@ namespace App\Http\Controllers\E_Jurnal;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Repositories\E_Jurnal\UserRepository;
+use App\Repositories\E_Jurnal\UserRepository1;
+use App\Models\logArtikel;
+use App\Models\logSkripsi;
+use App\Models\Jurnal;
+use App\Models\Skripsi;
+use Illuminate\Support\Facades\DB;
 use Exception;
 use Auth;
+use Hash;
 
 class UserController1 extends Controller
 {
     protected $repository;
   
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository1 $repository)
     {
         $this->repository = $repository;
     }
@@ -21,6 +27,17 @@ class UserController1 extends Controller
     {
         $items = $this->repository->paginate($request);
         return view('e_jurnal.admin.users.index',compact('items'));
+    }
+
+    public function dashboard()
+    {
+        $jmla = Jurnal::count();
+        $jmls = Skripsi::count();
+        $jmlm = DB::table('mahasiswa')->count();
+        $jmld = DB::table('dosen')->count();
+        $logj = logArtikel::select('*')->orderBy('waktu','desc')->get();
+        $logs = logSkripsi::select('*')->orderBy('waktu','desc')->get();
+        return view('e_jurnal.admin.home',compact('logj','logs','jmla','jmls','jmlm','jmld'));
     }
   
     public function store(Request $request)
@@ -45,7 +62,7 @@ class UserController1 extends Controller
 
         try {
             $item = $this->repository->store($request);
-            return redirect()->route('admin.user')->with('success','Data telah disimpan.');
+            return redirect()->route('admin1.user')->with('success','Data telah disimpan.');
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
@@ -54,7 +71,7 @@ class UserController1 extends Controller
     public function edit($id)
     {
         $item = $this->repository->show($id);
-        return view('e_learning.admin.users.edit',compact('item'));
+        return view('e_jurnal.admin.users.edit',compact('item'));
     }
   
     public function update($id, Request $request)
@@ -71,7 +88,7 @@ class UserController1 extends Controller
 
         try {
             $item = $this->repository->update($id, $request);
-            return redirect()->route('admin.user')->with('success','Data telah diupdate.');
+            return redirect()->route('admin1.user')->with('success','Data telah diupdate.');
         } catch (Exception $e) {
            return response()->json(['message' => $e->getMessage()], $e->getStatus());
         }
@@ -91,14 +108,14 @@ class UserController1 extends Controller
     {
         try {
             $this->repository->delete($id);
-            return redirect()->route('admin.user')->with('success','Data telah dihapus.');
+            return redirect()->route('admin1.user')->with('success','Data telah dihapus.');
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], $e->getStatus());
         }
     }
 
     public function postlogin(Request $request)
-    {
+    {   
         $request->validate([
             'email' => 'required|email|exists:users,email',
             'password' => 'required|min:6',
@@ -110,7 +127,7 @@ class UserController1 extends Controller
             'password.min' => 'Masukan password minimal :min karakter.',
         ]);
         if(Auth::guard('web')->attempt($request->only('email','password'))){
-            return redirect()->route('admin1.home');
+            return redirect()->route('admin1.dashboard');
         }else{
             return redirect()->route('admin1.login')->with('error','Login Gagal !');
         }
@@ -119,6 +136,35 @@ class UserController1 extends Controller
     public function logout()
     {
         Auth::guard('web')->logout();
-        return redirect('/');
+        return redirect('/index');
+    }
+
+    public function updateps(Request $request)
+    {
+        $request->validate([
+            'pslama' => 'required|min:6',
+            'psbaru' => 'required|min:6',
+            'konps' => 'required|same:psbaru',
+        ],[
+            'pslama.required' => 'Kolom password lama wajib diisi.',
+            'pslama.min' => 'Kolom password lama minimal 6 karakter.',
+            'psbaru.required' => 'Kolom password baru wajib diisi.',
+            'psbaru.min' => 'Kolom password baru minimal 6 karakter.',
+            'konps.required' => 'Kolom konfirmasi password baru wajib diisi.',
+            'konps.same' => 'Konfirmasi password dan password lama harus sama.',
+        ]);
+        try {
+            $current_user = auth()->user();
+            if(Hash::check($request->pslama,$current_user->password)){
+                $current_user->update([
+                    'password' => bcrypt($request->psbaru)
+                ]);
+                return redirect()->back()->with('success','Password Berhasil Diupdate');
+            }else{
+                return redirect()->back()->with('error','Password lama tidak cocok');;
+            }
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], $e->getStatus());
+        }
     }
 }

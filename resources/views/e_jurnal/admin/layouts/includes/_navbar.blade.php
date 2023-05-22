@@ -1,9 +1,9 @@
 <div class="navbar navbar-expand-lg navbar-dark bg-indigo navbar-static shadow-none">
 
-    <div class="navbar-brand text-center text-lg-left">
+    <div class="mt-2">
         <a href="index.html" class="d-inline-block">
-            <img src="../../../../global_assets/images/logo_light.png" class="d-none d-sm-block" alt="">
-            <img src="../../../../global_assets/images/logo_icon_light.png" class="d-sm-none" alt="">
+            <img src="../../../../global_assets/images/logo1.png" height="35px" class="d-none d-sm-block" alt="">
+            <img src="../../../../global_assets/images/logo_aplikasi.png" class="d-sm-none" alt="">
         </a>
     </div>
 
@@ -34,7 +34,7 @@
                 <div class="dropdown-menu dropdown-menu-right wmin-lg-250 py-2">
                     <div class="dropdown-item d-flex py-2">
                         <div class="flex-1">
-                            <div class="font-weight-semibold">Profile</div>
+                        <a href="{{ route('admin1.password.edit') }}" class="font-weight-semibold" style="color: #333">Ubah Password</a>
                         </div>
                         <span class="btn btn-dark-100 btn-icon btn-sm text-body border-transparent rounded-pill ml-1">
                             <i class="icon-user"></i>
@@ -43,9 +43,7 @@
 
                     <div class="dropdown-item d-flex py-2">
                         <div class="flex-1">
-                           
                                 <a href="{{ route('admin1.logout') }}" class="font-weight-semibold" style="color: #333">Sign out</a>
-
                         </div>
                         <span class="btn btn-dark-100 btn-icon btn-sm text-body border-transparent rounded-pill ml-1">
                             <i class="icon-exit2"></i>

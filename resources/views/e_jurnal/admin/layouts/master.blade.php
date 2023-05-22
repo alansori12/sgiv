@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>E-Journal STMIK Dharma Negara</title>
+	<title>E-Journal & E-Skripsi STMIK Dharma Negara</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -46,6 +46,14 @@
 
 	<script src="{{asset('global_assets/js/plugins/forms/inputs/inputmask.js')}}"></script>
 	<script src="{{asset('global_assets/js/demo_pages/form_controls_extended.js')}}"></script>
+
+	<script src="{{asset('global_assets/js/plugins/extensions/jquery_ui/interactions.min.js')}}"></script>
+	<script src="{{asset('global_assets/js/plugins/forms/selects/select2.min.js')}}"></script>
+	<script src="{{asset('global_assets/js/demo_pages/form_select2.js')}}"></script>
+
+	<script src="{{asset('global_assets/js/plugins/tables/datatables/datatables.min.js')}}"></script>
+	<script src="{{asset('assets/js/app.js')}}"></script>
+	<script src="{{asset('global_assets/js/demo_pages/datatables_basic.js')}}"></script>
 	<!-- /theme JS files -->
 
 </head>
@@ -113,7 +121,7 @@
 
 		<div class="navbar-collapse collapse" id="navbar-footer">
 			<span class="navbar-text">
-				&copy; 2022. <a><i>E-Journal</i></a> STMIK Dharma Negara Bandung.
+				&copy; 2022. <a><i>E-Journal & E-Skripsi</i></a> STMIK Dharma Negara Bandung.
 			</span>
 		</div>
 	</div>

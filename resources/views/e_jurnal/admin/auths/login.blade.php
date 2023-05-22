@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Login | E-Learning STMIK Dharma Negara</title>
+	<title>Login | E-Journal & E-Skripsi STMIK Dharma Negara</title>
 
 	<!-- Global stylesheets -->
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
 							<div class="tab-content card-body">
                                 <div class="text-center mb-3">
                                     <i class="icon-reading icon-2x text-secondary border-secondary border-3 rounded-pill p-3 mb-3 mt-1"></i>
-                                    <h5 class="mb-0"><i>E-Journal</i> STMIK Dharma Negara</h5>
+                                    <h5 class="mb-0"><i>E-Journal & E-Skripsi</i> STMIK Dharma Negara</h5>
                                     <span class="d-block text-muted">Login Admin</span>
                                 </div>
 
@@ -82,7 +82,7 @@
 
                                 <hr>
 
-                                <span class="form-text text-center text-muted">&copy; 2022. <i><a href="">E-Learning</a></i> STMIK Dharma Negara Bandung.</span>
+                                <span class="form-text text-center text-muted">&copy; 2022. <i><a href="">E-Journal & E-Learning</a></i> STMIK Dharma Negara Bandung.</span>
 							</div>
 						</div>
 					</form>

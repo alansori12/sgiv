@@ -14,6 +14,10 @@ class Mahasiswa extends Authenticatable
 
     protected $table = 'mahasiswa';
 
+    public function jurnal(){
+    	return $this->hasMany('App\Jurnal');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,6 +29,7 @@ class Mahasiswa extends Authenticatable
         'jk',
         'email',
         'password',
+        'status',
     ];
 
     /**

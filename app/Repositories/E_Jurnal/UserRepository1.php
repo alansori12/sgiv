@@ -7,7 +7,7 @@ use App\Models\User;
 use App\AppRoot\Repo\AppRepository;
 use Illuminate\Http\Request;
 
-class UserRepository extends AppRepository
+class UserRepository1 extends AppRepository
 {
     protected $model;
     

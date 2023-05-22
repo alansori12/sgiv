@@ -46,15 +46,16 @@
                 <!-- Main -->
                 <li class="nav-item-header pt-0"><div class="text-uppercase font-size-xs line-height-xs">Main</div> <i class="icon-menu" title="Main"></i></li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.home') }}" class="nav-link active">
+                    <a href="{{ route('admin1.dashboard') }}" class="nav-link active">
                         <i class="icon-home4"></i>
                         <span>
                             Dashboard
                         </span>
                     </a>
                 </li>
+                @if(Auth::guard('web')->check())
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin1.user') }}" class="nav-link">
                         <i class="icon-users2"></i>
                         <span>
                             Users
@@ -62,7 +63,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin1.mahasiswa') }}" class="nav-link">
                         <i class="icon-vcard"></i>
                         <span>
                             Mahasiswa
@@ -70,29 +71,30 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('admin1.dosen') }}" class="nav-link">
                         <i class="icon-user-tie"></i>
                         <span>
                             Dosen
                         </span>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="icon-copy"></i>
-                        <span>
-                            Jurnal
-                        </span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="icon-book"></i>
-                        <span>
-                            Skripsi
-                        </span>
-                    </a>
-                </li>
+                @endif
+                <li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-copy"></i> <span>Jurnal</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="display: none;">
+								<li class="nav-item"><a href="{{ route('admin1.artikel') }}" class="nav-link">Semua Artikel</a></li>
+								<li class="nav-item"><a href="{{ route('admin1.artikel.masuk') }}" class="nav-link">Artikel Masuk</a></li>
+							</ul>
+						</li>
+                <li class="nav-item nav-item-submenu">
+							<a href="#" class="nav-link"><i class="icon-book"></i> <span>Skripsi</span></a>
+
+							<ul class="nav nav-group-sub" data-submenu-title="Layouts" style="display: none;">
+								<li class="nav-item"><a href="{{ route('admin1.skripsi') }}" class="nav-link">Semua Skripsi</a></li>
+								<li class="nav-item"><a href="{{ route('admin1.skripsi.masuk') }}" class="nav-link">Skripsi Masuk</a></li>
+							</ul>
+						</li>
                 <!-- /main -->
                     
             </ul>
